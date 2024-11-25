@@ -10,5 +10,7 @@
 
         // FK:
         public int? InvoiceId { get; set; }
+
+        public Invoice Invoice { get; set; }
     }
 }

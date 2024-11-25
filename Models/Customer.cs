@@ -25,5 +25,7 @@
         public string? ContactEmail { get; set; }
 
         public bool IsDeleted { get; set; } = false;
+
+        public ICollection<Invoice> Invoices { get; set; }
     }
 }

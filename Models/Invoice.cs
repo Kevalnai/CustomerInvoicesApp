@@ -4,6 +4,9 @@ namespace CustomerInvoicesApp.Models
 {
     public class Invoice
     {
+        public Customer Customer { get; set; }
+
+
         public int InvoiceId { get; set; }
 
         public DateTime? InvoiceDate { get; set; }
@@ -26,5 +29,7 @@ namespace CustomerInvoicesApp.Models
 
         // FK:
         public int CustomerId { get; set; }
+
+        public ICollection<InvoiceLineItem> InvoiceLineItems { get; set; }
     }
 }
