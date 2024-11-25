@@ -1,3 +1,6 @@
+using CustomerInvoicesApp.Data;
+using Microsoft.EntityFrameworkCore;
+
 namespace CustomerInvoicesApp
 {
     public class Program
@@ -8,6 +11,11 @@ namespace CustomerInvoicesApp
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            builder.Services.AddDbContext<AppDBContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("CustomerInvoicesApp")));
+
+
 
             var app = builder.Build();
 
