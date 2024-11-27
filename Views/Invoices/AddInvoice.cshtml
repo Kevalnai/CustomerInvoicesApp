@@ -1,4 +1,4 @@
-﻿@model CustomerInvoicesApp.Models.Invoice
+﻿@model CustomerInvoicesAppLibrary.Models.Invoice
 
 <h2>Add Invoice</h2>
 
@@ -15,7 +15,7 @@
         <label asp-for="PaymentTermsId"></label>
         <select asp-for="PaymentTermsId" class="form-control">
             <option value="">Select Payment Terms</option>
-            @foreach (var term in ViewBag.PaymentTerms as List<CustomerInvoicesApp.Models.PaymentTerms>)
+            @foreach (var term in ViewBag.PaymentTerms as List<CustomerInvoicesAppLibrary.Models.PaymentTerms>)
             {
                 <option value="@term.PaymentTermsId">@term.Description</option>
             }
@@ -27,10 +27,10 @@
         <label asp-for="PaymentTotal"></label>
         <input asp-for="PaymentTotal" class="form-control" />
         <span asp-validation-for="PaymentTotal" class="text-danger"></span>
+    
     </div>
 
-
-    <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 
 @section Scripts {

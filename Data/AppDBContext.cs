@@ -1,4 +1,5 @@
 ﻿using CustomerInvoicesApp.Models;
+using CustomerInvoicesAppLibrary.Models;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 namespace CustomerInvoicesApp.Data
