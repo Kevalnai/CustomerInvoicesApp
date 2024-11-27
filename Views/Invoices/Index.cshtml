@@ -1,0 +1,83 @@
+﻿@model CustomerInvoicesApp.Models.CustomerInvoicesViewModel
+
+<h1>Invoices for @Model.Customer.Name</h1>
+<p>@Model.Customer.Address1, @Model.Customer.City</p>
+<p>Payment Terms: @Model.SelectedInvoice?.PaymentTerms.Description</p>
+
+<div class="row">
+    <!-- Invoice List on the Left -->
+    <div class="col-md-4">
+        <h4>Invoices</h4>
+        <a href="@Url.Action("AddInvoice", "Invoices", new { customerId = Model.Customer.CustomerId })" class="btn btn-primary mb-3">Add New Invoice</a>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Invoice #</th>
+                    <th>Due Date</th>
+                    <th>Amount Paid</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var invoice in Model.Customer.Invoices)
+                {
+                    <tr class="@(invoice.InvoiceId == Model.SelectedInvoice?.InvoiceId ? "table-primary" : "")">
+                        <td>
+                            <a href="@Url.Action("Index", "Invoices", new { customerId = Model.Customer.CustomerId, selectedInvoiceId = invoice.InvoiceId })">
+                                @invoice.InvoiceId
+                            </a>
+                        </td>
+                        <td>@invoice.InvoiceDate.</td>
+                        <td>@invoice.InvoiceLineItems.Sum(li => li.Amount).ToString("C")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Invoice Details and Line Items on the Right -->
+    <div class="col-md-8">
+        @if (Model.SelectedInvoice != null)
+        {
+            <h4>Invoice Details (Invoice #: @Model.SelectedInvoice.InvoiceId)</h4>
+            <p>Invoice Date: @Model.SelectedInvoice.InvoiceDate</p>
+
+            <h5>Line Items</h5>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Description</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var lineItem in Model.SelectedInvoice.InvoiceLineItems)
+                    {
+                        <tr>
+                            <td>@lineItem.Description</td>
+                            <td>@lineItem.Amount</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+
+            <!-- Form to Add Line Item -->
+            <h5>Add Line Item</h5>
+            <form method="post" asp-action="AddInvoiceLineItem">
+                <input type="hidden" name="InvoiceId" value="@Model.SelectedInvoice.InvoiceId" />
+                <div class="form-group">
+                    <label for="Description">Description</label>
+                    <input type="text" id="Description" name="Description" class="form-control" required />
+                </div>
+                <div class="form-group">
+                    <label for="Amount">Amount</label>
+                    <input type="number" id="Amount" name="Amount" class="form-control" step="0.01" required />
+                </div>
+                <button type="submit" class="btn btn-success">Add Line Item</button>
+            </form>
+        }
+        else
+        {
+            <p>Please select an invoice to view its details.</p>
+        }
+    </div>
+</div>

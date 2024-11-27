@@ -1,15 +1,17 @@
-﻿namespace CustomerInvoicesApp.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace CustomerInvoicesApp.Models
 {
     public class Customer
     {
         public int CustomerId { get; set; }
-
+        [Required]
         public string Name { get; set; } = null!;
-
-        public string? Address1 { get; set; }
+        [Required]
+        public string Address1 { get; set; }
 
         public string? Address2 { get; set; }
-
+        [Required]
         public string? City { get; set; } = null!;
 
         public string? ProvinceOrState { get; set; } = null!;

@@ -1,5 +1,6 @@
 ﻿using CustomerInvoicesApp.Models;
 using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
 namespace CustomerInvoicesApp.Data
 {
     public class AppDBContext : DbContext

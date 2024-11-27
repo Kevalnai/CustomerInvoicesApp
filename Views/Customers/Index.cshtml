@@ -1,0 +1,52 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    
+}
+
+<a href="@Url.Action("AddCustomer", "Customers")" class="btn btn-primary">Add New Customer</a>
+
+@if (ViewBag.ShowUndo && ViewBag.LastDeletedCustomerId != null)
+{
+    <div id="undoMessage" class="alert alert-warning alert-dismissible fade show" role="alert">
+        <strong>Customer deleted!</strong>
+        <a href="@Url.Action("UndoDelete", "Customers", new { id = ViewBag.LastDeletedCustomerId })" class="alert-link">Undo</a>.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var customer in Model)
+        {
+            <tr>
+                <td>@customer.Name</td>
+                <td>@customer.Address1, @customer.City</td>
+                <td>
+                    <a href="@Url.Action("Index", "Invoices", new { customerId = customer.CustomerId })" class="btn btn-info">Invoices</a>
+                    <a href="@Url.Action("EditCustomer", "Customers", new { id = customer.CustomerId })" class="btn btn-warning">Edit</a>
+                    <a href="@Url.Action("Delete", "Customers", new { id = customer.CustomerId })" class="btn btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+            // Auto fade out the undo message after 6 seconds
+            setTimeout(function () {
+                $("#undoMessage").fadeOut("slow");
+            }, 6000);
+        });
+    </script>
+}

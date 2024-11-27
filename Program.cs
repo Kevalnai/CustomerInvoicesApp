@@ -9,11 +9,14 @@ namespace CustomerInvoicesApp
         {
             var builder = WebApplication.CreateBuilder(args);
 
+
+            builder.Services.AddDbContext<AppDBContext>(options =>
+             options.UseSqlServer(builder.Configuration.GetConnectionString("CustomerInvoicesApp")));
+
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
-            builder.Services.AddDbContext<AppDBContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("CustomerInvoicesApp")));
+            
 
 
 
