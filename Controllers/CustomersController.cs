@@ -100,6 +100,7 @@ namespace CustomerInvoicesApp.Controllers
         public async Task<IActionResult> EditCustomer(Customer customer)
         {
             ModelState.Remove("Invoices");
+            
             if (!ModelState.IsValid)
             {
                 ViewBag.FormAction = "EditCustomer";

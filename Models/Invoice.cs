@@ -4,14 +4,14 @@ namespace CustomerInvoicesApp.Models
 {
     public class Invoice
     {
-        public Customer Customer { get; set; }
+        public Customer? Customer { get; set; }
 
 
         public int InvoiceId { get; set; }
 
         public DateTime? InvoiceDate { get; set; }
 
-        public PaymentTerms PaymentTerms { get; set; }
+        public PaymentTerms? PaymentTerms { get; set; }
         public DateTime? InvoiceDueDate
         {
             get
@@ -30,6 +30,6 @@ namespace CustomerInvoicesApp.Models
         // FK:
         public int CustomerId { get; set; }
 
-        public ICollection<InvoiceLineItem> InvoiceLineItems { get; set; }
+        public ICollection<InvoiceLineItem>? InvoiceLineItems { get; set; }
     }
 }
