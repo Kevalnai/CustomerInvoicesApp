@@ -1,0 +1,66 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model CustomerInvoicesAppLibrary.Models.Customer
+
+<form asp-action="@ViewBag.FormAction" method="post">
+    <div class="form-group">
+        <input type="hidden" asp-for="CustomerId" />
+
+
+        <label asp-for="Name">Name</label>
+        <input asp-for="Name" type="text" class="form-control" id="Name" name="Name" value="@Model.Name" required />
+        <div class="invalid-feedback">Name is required.</div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Address1">Address</label>
+        <input asp-for="Address1"  type="text" class="form-control" id="Address1" name="Address1" value="@Model.Address1" required />
+        <div class="invalid-feedback">Address is required.</div>
+    </div>
+
+
+    <div class="form-group">
+        <label asp-for="City">City</label>
+        <input asp-for="City"  type="text" class="form-control" id="City" name="City" value="@Model.City" required />
+        <div class="invalid-feedback">City is required.</div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ProvinceOrState">Province/State</label>
+        <input asp-for="ProvinceOrState"  type="text" class="form-control" id="ProvinceOrState" name="ProvinceOrState" value="@Model.ProvinceOrState" required />
+        <div class="invalid-feedback">Province/State is required.</div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ZipOrPostalCode">Zip/Postal Code</label>
+        <input asp-for="ZipOrPostalCode"  type="text" class="form-control" id="ZipOrPostalCode" name="ZipOrPostalCode" value="@Model.ZipOrPostalCode" required />
+        <div class="invalid-feedback">Zip/Postal Code is required.</div>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Phone">Phone</label>
+        <input asp-for="Phone"  type="text" class="form-control" id="Phone" name="Phone" value="@Model.Phone" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ContactFirstName">Contact First Name</label>
+        <input asp-for="ContactFirstName"  type="text" class="form-control" id="ContactFirstName" name="ContactFirstName" value="@Model.ContactFirstName" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ContactLastName">Contact Last Name</label>
+        <input asp-for="ContactLastName"  type="text" class="form-control" id="ContactLastName" name="ContactLastName" value="@Model.ContactLastName" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ContactEmail">Contact Email</label>
+        <input asp-for="ContactEmail"  type="email" class="form-control" id="ContactEmail" name="ContactEmail" value="@Model.ContactEmail" />
+    </div>
+
+    <button type="submit" class="btn btn-success">Save</button>
+    <a href="@Url.Action("Index", "Customers")" class="btn btn-secondary">Cancel</a>
+</form>

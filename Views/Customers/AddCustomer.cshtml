@@ -1,0 +1,16 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model CustomerInvoicesAppLibrary.Models.Customer
+
+<h1>Add New Customer</h1>
+
+@{
+    <span asp-validation-summary="All"></span>
+    ViewBag.FormAction = "AddCustomer";
+    @await Html.PartialAsync("_CustomerForm", Model)
+}
+ 
